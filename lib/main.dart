@@ -24,19 +24,22 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("NTU Flutter Class"),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.green.shade100,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Row(
               children: [
-                Image.network(
-                  'https://avatars.githubusercontent.com/u/65105273?size=256',
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,
+                ClipOval(
+                  child: Image.network(
+                    'https://avatars.githubusercontent.com/u/65105273?size=256',
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(width: 10),
                 Expanded(
@@ -59,22 +62,20 @@ class HomePage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'I am a Flutter Developer',
-                    style: TextStyle(fontSize: 30),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 20),
-                  Image.network(
-                    'https://upload.wikimedia.org/wikipedia/zh/7/77/Rickrolling_YouTube_RickAstleyVEVO_20150720.png',
-                    fit: BoxFit.cover,
-                  ),
-                ],
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'I am a Flutter Developer',
+                  style: TextStyle(fontSize: 30),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20),
+                Image.network(
+                  'https://upload.wikimedia.org/wikipedia/zh/7/77/Rickrolling_YouTube_RickAstleyVEVO_20150720.png',
+                  fit: BoxFit.cover,
+                ),
+              ],
             ),
           ],
         ),

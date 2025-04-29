@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'bold_black_text.dart';
+import 'book.dart';
+import 'book_tile.dart';
+import 'bmi.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -163,4 +169,90 @@ class Lyric {
   final String lyric;
   final String singer;
   Lyric({required this.lyric, required this.singer});
+}
+
+class BookPage extends StatefulWidget {
+  const BookPage({super.key});
+
+  @override
+  State<BookPage> createState() => _BookPageState();
+}
+
+class _BookPageState extends State<BookPage> {
+  final List<Book> books = const [
+    Book(name: '彼得潘', author: 'J.M.巴里'),
+    Book(name: '小王子', author: '安托萬·德·聖-埃克蘇佩里'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Books'),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [for (final book in books) BookTile(book: book)],
+      ),
+    );
+  }
+}
+
+class dicePage extends StatefulWidget {
+  const dicePage({super.key});
+
+  @override
+  State<dicePage> createState() => _dicePageState();
+}
+
+class _dicePageState extends State<dicePage> {
+  final _diceEmojis = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+  var _diceIndex = 0;
+  var _diceIndex2 = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              _diceEmojis[_diceIndex],
+              style: TextStyle(
+                fontSize: 200,
+                color:
+                _diceIndex == 0 || _diceIndex == 3
+                    ? Colors.red
+                    : Colors.black,
+              ),
+            ),
+            Text(
+              _diceEmojis[_diceIndex2],
+              style: TextStyle(
+                fontSize: 200,
+                color:
+                _diceIndex2 == 0 || _diceIndex2 == 3
+                    ? Colors.red
+                    : Colors.black,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _diceIndex = Random().nextInt(6);
+                  _diceIndex2 = Random().nextInt(6);
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.yellow,
+                foregroundColor: Colors.green,
+              ),
+              child: Text('Play'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
